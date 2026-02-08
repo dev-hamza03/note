@@ -7,7 +7,8 @@ const path = require('path')
 const app = express()
 app.use(express.json())
 app.use(cors())
-app.use(express.static(path.join(__dirname, "./public")))
+const publicPath = path.join(__dirname, "..", "public");
+app.use(express.static(publicPath));
 
 /**
  * - POST /api/notes
@@ -76,6 +77,12 @@ app.patch("/api/notes/:id", async (req, res)=>{
 // app.use('*name', (req, res)=>{
 //     res.sendFile(path.join(__dirname,"..", "/public/index.html"))
 // })
+
+
+// SPA fallback
+app.get("*", (req, res) => {
+  res.sendFile(path.join(publicPath, "index.html"));
+});
 
 
 module.exports = app
