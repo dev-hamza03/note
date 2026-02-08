@@ -38,6 +38,16 @@ function App() {
     })
   }
 
+  function handleUpdateNote(id){
+    const newDescription = prompt("enter new description")
+    axios.patch(`http://localhost:3000/api/notes/${id}`,{
+      description:newDescription
+    })
+    .then((res)=>{
+      fetchNotes()
+    })
+  }
+
 
   return (
     <>
@@ -58,7 +68,10 @@ function App() {
               <p>{note.description}</p>
               <button onClick={()=>{
                 handleDeleteNote(note._id)
-              }}>delete</button>
+              }}>delete note</button>
+              <button onClick={()=>{
+                handleUpdateNote(note._id)
+              }}>update note</button>
             </div>
           })
         }
