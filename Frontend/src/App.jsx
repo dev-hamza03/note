@@ -6,7 +6,7 @@ function App() {
 
   function fetchNotes() {
     axios
-      .get("https://note-maker-1-705a.onrender.com/api/notes")
+      .get("http://localhost:3000/api/notes")
       .then((res) => {
         setNotes(res.data.note);
       });
@@ -22,7 +22,7 @@ function App() {
     const description = e.target.description.value;
 
     axios
-      .post("https://note-maker-1-705a.onrender.com/api/notes", {
+      .post("http://localhost:3000/api/notes", {
         title: title,
         description: description,
       })
@@ -34,7 +34,7 @@ function App() {
 
   function handleDeleteNote(id) {
     axios
-      .delete(`https://note-maker-1-705a.onrender.com/api/notes/${id}`)
+      .delete(`http://localhost:3000/api/notes/${id}`)
       .then((res) => {
         fetchNotes();
       });
@@ -43,7 +43,7 @@ function App() {
   function handleUpdateNote(id) {
     const newDescription = prompt("enter new description");
     axios
-      .patch(`https://note-maker-1-705a.onrender.com/api/notes/${id}`, {
+      .patch(`http://localhost:3000/api/notes/${id}`, {
         description: newDescription,
       })
       .then((res) => {
