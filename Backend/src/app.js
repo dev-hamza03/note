@@ -1,5 +1,5 @@
 const express = require("express");
-const noteModel = require("./models/note.model");
+const noteModel = require("./Models/note.model");
 const cors = require("cors");
 const path = require("path");
 
@@ -7,7 +7,7 @@ const app = express();
 
 app.use(cors())
 app.use(express.json());
-app.use(express.static("./public"));
+app.use(express.static("./Public"));
 
 /* POST API/notes */
 /* create new note and save in databse */
@@ -63,7 +63,7 @@ app.patch("/api/notes/:id", async (req, res) => {
 });
 
 app.use("*name", (req, res) => {
-    res.sendFile(path.join(__dirname, "..", "/public/index.html"))
+    res.sendFile(path.join(__dirname, "..", "/Public/index.html"))
 });
 
 module.exports = app;
