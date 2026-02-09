@@ -11,7 +11,9 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 // const publicPath = path.join(__dirname, "public");  // ← important!
-app.use(express.static('./public'));
+const publicPath = path.join(__dirname, "public");
+app.use(express.static(publicPath));
+
 
 /**
  * - POST /api/notes
